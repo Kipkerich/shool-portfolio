@@ -684,23 +684,21 @@ section.courses .item .down-content {
 }
 
 .course-image {
-    height: 250px;
-    overflow: hidden;
     position: relative;
     width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
 }
 
 .course-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    transition: all 0.3s ease;
-    min-width: 100%;
-    min-height: 100%;
+    transition: transform 0.3s ease;
 }
 
 .course-card:hover .course-image img {
