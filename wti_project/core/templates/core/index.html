@@ -1,0 +1,284 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Home | Wama Training Institute{% endblock %}
+
+{% block content %}
+  <!-- 1. Hero Banner -->
+  <section class="section main-banner" id="top">
+      <img src="{% static 'images/landing-page.jpg' %}" alt="Wama Training Institute Campus Cover">
+      <div class="video-overlay header-text">
+          <div class="caption">
+              <h2><em>The</em> Wama Training Institute</h2>
+              <h6>Advancing Medical Knowledge</h6>
+              <p class="text-white mt-3 mb-4 px-3" style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">
+                  Empowering the next generation of healthcare professionals with certified, hands-on clinical training in Ongata Rongai.
+              </p>
+              <div class="main-button">
+                  <a href="{% url 'about' %}">Discover More About Us</a>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- 2. Core Pillars -->
+  <section class="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-12">
+          <div class="features-post">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-bullseye"></i>School Mission</h4>
+              </div>
+              <div class="content-hide" style="display: block;">
+                <p>To excel the community in medical knowledge and provide the best care in and outside hospital, locally and internationally, to bridge the gap in the healthcare system.</p>
+                <a href="{% url 'about' %}" class="text-white font-weight-bold">Read More &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="features-post second-features">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-eye"></i>School Vision</h4>
+              </div>
+              <div class="content-hide" style="display: block;">
+                <p>To be a highly ranked health college that provides dynamic, comprehensive, and globally competitive healthcare courses.</p>
+                <a href="{% url 'about' %}" class="text-white font-weight-bold">Read More &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="features-post third-features">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-heart"></i>School Values</h4>
+              </div>
+              <div class="content-hide" style="display: block;">
+                <p><strong>W.A.M.A.P.E.V:</strong> Welfare, Accountability, Mindfulness, Accessibility, Professionalism, Excellence, and Value Addition & Improvement.</p>
+                <a href="{% url 'about' %}" class="text-white font-weight-bold">Our Philosophy &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Why Choose Us (Horizontal Carousel) -->
+  <section class="section why-us" style="padding: 80px 0; background-color: #fff;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading text-center mb-5">
+            <h2>Why Choose Wama Training Institute?</h2>
+          </div>
+        </div>
+      </div>
+      <!-- Horizontal Owl Carousel -->
+      <div class="owl-carousel owl-theme why-us-carousel">
+        
+        <!-- Slide 1 -->
+        <div class="item p-3">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <img src="{% static 'images/course.jpg' %}" alt="Certified and Accredited healthcare programs" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6 mt-3 mt-md-0">
+              <h4>TVETA Accredited Training</h4>
+              <p>Wama Training Institute is fully registered and accredited by the Technical and Vocational Education and Training Authority (TVETA). Our programs meet rigorous national regulatory quality frameworks.</p>
+              <a href="{% url 'about' %}" class="btn btn-warning text-dark font-weight-bold mt-2">Learn More About WTI</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="item p-3">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <img src="{% static 'images/wti-3.png' %}" alt="Clinical Placement Training" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6 mt-3 mt-md-0">
+              <h4>Direct Clinical Exposure</h4>
+              <p>Through our strong integration with active medical centers, our students transition seamlessly from classroom concepts to actual clinical rotations, gaining practical competency early in their studies.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="item p-3">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <img src="{% static 'images/wti-1.png' %}" alt="Dedicated Instructors" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6 mt-3 mt-md-0">
+              <h4>Experienced Medical Faculty</h4>
+              <p>Our educators aren't just lecturers; they are practicing healthcare professionals, clinical officers, and skilled laboratory experts committed to mentoring you step-by-step.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Available Courses (Horizontal Carousel) -->
+  <section class="section available-courses" style="background-color: #f4f7f6; padding: 80px 0;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center mb-5">
+          <div class="section-heading">
+            <h2 class="text-dark">Available Courses</h2>
+            <p class="text-muted">Swipe or click to browse our market-ready clinical programs</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Courses Owl Carousel -->
+      <div class="owl-carousel owl-theme courses-carousel">
+        
+        <!-- Course Card 1 -->
+        <div class="item">
+          <div class="card border-0 shadow-sm mx-2 h-100">
+            <div class="card-body p-4 text-center d-flex flex-column justify-content-between" style="min-height: 320px;">
+              <div>
+                <div class="icon-container mb-3" style="font-size: 2.5rem; color: #f5a425;">
+                  <i class="fa fa-hospital-o"></i>
+                </div>
+                <h5 class="font-weight-bold mb-3">Perioperative Theatre Technology</h5>
+                <p class="text-muted small">Master the maintenance of operating theatres, sterile setups, and surgical equipment support.</p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <span class="badge badge-secondary p-2 mb-3 d-inline-block">Level 5 & 6</span>
+                <a href="{% url 'courses' %}" class="btn btn-sm btn-outline-primary btn-block font-weight-bold">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Card 2 -->
+        <div class="item">
+          <div class="card border-0 shadow-sm mx-2 h-100">
+            <div class="card-body p-4 text-center d-flex flex-column justify-content-between" style="min-height: 320px;">
+              <div>
+                <div class="icon-container mb-3" style="font-size: 2.5rem; color: #f5a425;">
+                  <i class="fa fa-flask"></i>
+                </div>
+                <h5 class="font-weight-bold mb-3">Phlebotomy Techniques</h5>
+                <p class="text-muted small">Acquire professional capabilities in venipuncture procedures, specimen collection, and safety protocols.</p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <span class="badge badge-secondary p-2 mb-3 d-inline-block">Short Course</span>
+                <a href="{% url 'courses' %}" class="btn btn-sm btn-outline-primary btn-block font-weight-bold">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Card 3 -->
+        <div class="item">
+          <div class="card border-0 shadow-sm mx-2 h-100">
+            <div class="card-body p-4 text-center d-flex flex-column justify-content-between" style="min-height: 320px;">
+              <div>
+                <div class="icon-container mb-3" style="font-size: 2.5rem; color: #f5a425;">
+                  <i class="fa fa-heartbeat"></i>
+                </div>
+                <h5 class="font-weight-bold mb-3">Health Support Services</h5>
+                <p class="text-muted small">Gain crucial foundational nursing-aid skills, clinical administrative knowledge, and first-line patient care.</p>
+              </div>
+              <div class="pt-3 border-top mt-3">
+                <span class="badge badge-secondary p-2 mb-3 d-inline-block">Level 5</span>
+                <a href="{% url 'courses' %}" class="btn btn-sm btn-outline-primary btn-block font-weight-bold">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- 6. News & Updates (Blog Articles Section) -->
+  <section class="section news-updates" style="padding: 80px 0; background-color: #fff;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center mb-5">
+          <div class="section-heading">
+            <h2>News & Updates</h2>
+            <p class="text-muted">Stay informed with latest campus stories, events, and medical insights</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Article 1 -->
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="{% static 'images/blog-1.jpg' %}" class="card-img-top" alt="WTI Intake Opening" onerror="this.src='https://placehold.co/600x400?text=Campus+News'">
+            <div class="card-body p-4">
+              <span class="text-warning small font-weight-bold">Announcements</span>
+              <h5 class="font-weight-bold my-2 text-dark">Admissions Officially Open for Next Intake</h5>
+              <p class="text-muted small">Applications are now being processed for our upcoming healthcare cohorts. Early birds secure clinical attachments paths smoothly.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Article 2 -->
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="{% static 'images/blog-2.jpg' %}" class="card-img-top" alt="Clinical Attachments" onerror="this.src='https://placehold.co/600x400?text=Clinical+Placements'">
+            <div class="card-body p-4">
+              <span class="text-warning small font-weight-bold">Student Life</span>
+              <h5 class="font-weight-bold my-2 text-dark">The Value of Early Hands-On Hospital Exposure</h5>
+              <p class="text-muted small">Discover how WTI's structural pairing with working clinical wards sets up medical trainees to excel beyond standard classroom settings.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Article 3 -->
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="{% static 'images/blog-3.jpg' %}" class="card-img-top" alt="Accreditation update" onerror="this.src='https://placehold.co/600x400?text=TVETA+Standards'">
+            <div class="card-body p-4">
+              <span class="text-warning small font-weight-bold">Compliance</span>
+              <h5 class="font-weight-bold my-2 text-dark">WTI Renews Quality Standards for Technical Courses</h5>
+              <p class="text-muted small">A close look at our persistent engineering alignments with TVETA benchmarks to sustain premium education inside Kenya.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    $(document).ready(function(){
+      // Initialize Why Choose Us Carousel
+      $(".why-us-carousel").owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        nav: true,
+        dots: true,
+        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"]
+      });
+
+      // Initialize Available Courses Carousel
+      $(".courses-carousel").owlCarousel({
+        loop: false,
+        margin: 15,
+        nav: true,
+        dots: true,
+        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+        responsive: {
+          0: { items: 1 },
+          768: { items: 2 },
+          1000: { items: 3 }
+        }
+      });
+    });
+  </script>
+{% endblock %}
