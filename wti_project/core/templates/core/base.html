@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="Wama Training Institute, WTI, Medical Courses, Perioperative Theatre Technology, Phlebotomy, Health Support Services, Ongata Rongai, Kenya, TVETA Accredited, Healthcare Education">
+    <meta name="author" content="Wama Training Institute">
+    
+    <link rel="icon" type="image/x-icon" href="{% static 'images/wti-logo-trans.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/wti-logo-trans.png' %}">
+    <link rel="icon" href="{% static 'images/wti-logo-trans.png' %}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{% static 'images/wti-logo-trans.png' %}">
+
+    <title>{% block title %}Wama Training Institute | Advancing Medical Knowledge{% endblock %}</title>
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-grad-school.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+</head>
+<body>
+
+  <!-- Universal Header -->
+  <header class="main-header clearfix" role="header">
+    <div class="logo">
+      <img src="{% static 'images/wti-logo.png' %}" alt="Wama Training Institute Logo" class="logo-image" style="height: 40px; width: auto;">
+    </div>
+    <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+    <nav id="menu" class="main-nav" role="navigation">
+      <ul class="main-menu">
+        <li class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">
+            <a href="{% url 'about' %}">About Us</a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'courses' %}active{% endif %}">
+            <a href="{% url 'courses' %}">Courses</a>
+        </li>
+        <li>
+            <a href="https://learn.wamahospital.org/accounts/login/" class="external" target="_blank">Portal</a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+            <a href="{% url 'contact' %}">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Specific Dynamic Content -->
+  {% block content %}
+  {% endblock %}
+
+  <!-- Universal Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p><i class="fa fa-copyright"></i> Copyright 2026 Wama Training Institute 
+          | Design: <a href="https://kipkerich.github.io/mysite/" target="_blank">Pixel Architect</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Unified Scripts -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/isotope.min.js' %}"></script>
+  <script src="{% static 'js/owl-carousel.js' %}"></script>
+  <script src="{% static 'js/lightbox.js' %}"></script>
+  <script src="{% static 'js/tabs.js' %}"></script>
+  <script src="{% static 'js/video.js' %}"></script>
+  <script src="{% static 'js/slick-slider.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+  <script>
+    $('.menu-link').click(function(e) {
+        e.preventDefault();
+        $('#menu').toggleClass('active');
+    });
+  </script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
