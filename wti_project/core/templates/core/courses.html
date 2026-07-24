@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Our Courses | Wama Training Institute{% endblock %}
+
+{% block content %}
+  <!-- Page Header -->
+  <section class="page-heading" style="background-image: url({% static 'images/courses-bg.jpg' %}); padding: 120px 0 80px; background-position: center; background-size: cover; position: relative;">
+      <div class="video-overlay" style="background-color: rgba(7, 36, 75, 0.85); position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+          <div class="row">
+              <div class="col-md-12 text-center text-white">
+                  <span class="text-uppercase" style="letter-spacing: 2px; color: #f5a425; font-weight: 700; font-size: 0.9rem;">What We Teach</span>
+                  <h1 style="font-weight: 800; font-size: 3rem; margin-top: 10px; margin-bottom: 15px;">Available Courses</h1>
+                  <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; opacity: 0.9;">Choose from our selection of accredited clinical programs designed to launch your medical career.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="section courses-list" style="padding: 80px 0; background-color: #f8fafc;">
+    <div class="container">
+      <div class="row">
+        <!-- Course 1 -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="course-img-wrapper">
+              <img src="{% static 'images/perioperative-img.jpg' %}" alt="Perioperative Theatre Technology" onerror="this.src='https://placehold.co/600x400?text=Perioperative+Technology'">
+            </div>
+            <div class="card-body p-4">
+              <h5 style="color: #07244b; font-weight: 700;">Perioperative Theatre Technology</h5>
+              <p class="text-muted small mt-2">Level 5 & 6 TVETA accredited program.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Course 2 -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="course-img-wrapper">
+              <img src="{% static 'images/phlebotomy-img.jpg' %}" alt="Phlebotomy Techniques" onerror="this.src='https://placehold.co/600x400?text=Phlebotomy+Techniques'">
+            </div>
+            <div class="card-body p-4">
+              <h5 style="color: #07244b; font-weight: 700;">Phlebotomy Techniques</h5>
+              <p class="text-muted small mt-2">Short Certification Course for healthcare professionals.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Course 3 -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="course-img-wrapper">
+              <img src="{% static 'images/course.jpg' %}" alt="Health Support Services" onerror="this.src='https://placehold.co/600x400?text=Health+Support+Services'">
+            </div>
+            <div class="card-body p-4">
+              <h5 style="color: #07244b; font-weight: 700;">Health Support Services</h5>
+              <p class="text-muted small mt-2">Level 5 TVETA course in clinical nursing assistant competencies.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

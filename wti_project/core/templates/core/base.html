@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/templatemo-grad-school.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.css' %}">
     <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom-enhancements.css' %}">
 </head>
 <body>
 
@@ -43,8 +44,8 @@
         <li class="{% if request.resolver_match.url_name == 'courses' %}active{% endif %}">
             <a href="{% url 'courses' %}">Courses</a>
         </li>
-        <li>
-            <a href="https://learn.wamahospital.org/accounts/login/" class="external" target="_blank">Portal</a>
+        <li class="{% if request.resolver_match.url_name == 'blog' %}active{% endif %}">
+            <a href="{% url 'blog' %}">Blog</a>
         </li>
         <li class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
             <a href="{% url 'contact' %}">Contact</a>

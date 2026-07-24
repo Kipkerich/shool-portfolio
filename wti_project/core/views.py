@@ -9,5 +9,8 @@ def about_view(request):
 def courses_view(request):
     return render(request, 'core/courses.html')
 
+def blog_view(request):
+    return render(request, 'core/blog.html')
+
 def contact_view(request):
     return render(request, 'core/contact.html')
