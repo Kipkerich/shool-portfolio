@@ -1,0 +1,87 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ course.title }} | Wama Training Institute{% endblock %}
+
+{% block content %}
+  <!-- Page Header -->
+  <section class="page-heading" style="background-image: url({% static 'images/courses-bg.jpg' %}); padding: 120px 0 80px; background-position: center; background-size: cover; position: relative;">
+      <div class="video-overlay" style="background-color: rgba(7, 36, 75, 0.85); position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+          <div class="row">
+              <div class="col-md-12 text-center text-white">
+                  <span class="text-uppercase" style="letter-spacing: 2px; color: #f5a425; font-weight: 700; font-size: 0.9rem;">Course Details</span>
+                  <h1 style="font-weight: 800; font-size: 2.8rem; margin-top: 10px; margin-bottom: 15px;">{{ course.title }}</h1>
+                  <span class="badge badge-warning text-dark font-weight-bold px-3 py-2" style="background-color: #f5a425; border-radius: 20px; font-size: 0.95rem;">{{ course.level }}</span>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Course Content -->
+  <section class="section course-detail" style="padding: 80px 0; background-color: #ffffff;">
+    <div class="container">
+      <div class="row">
+        <!-- Main Description -->
+        <div class="col-lg-8 mb-5">
+          <div class="course-main-card p-4 p-md-5 rounded shadow-sm" style="border: 1px solid #eaeaea;">
+            <div class="course-banner-img mb-4" style="height: 400px; overflow: hidden; border-radius: 10px;">
+              <img src="{% if course.image %}{{ course.image.url }}{% elif course.image_path %}{% static course.image_path %}{% else %}https://placehold.co/600x400?text=Course{% endif %}" alt="{{ course.title }}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://placehold.co/600x400?text=Course'">
+            </div>
+
+            <h2 style="color: #07244b; font-weight: 700; margin-bottom: 20px;">About this Program</h2>
+            <p style="color: #475569; font-size: 1.05rem; line-height: 1.8; margin-bottom: 30px; text-align: justify;">{{ course.description }}</p>
+
+            <!-- School Fees Structure Section -->
+            <div class="fees-structure-section mt-5 p-4 rounded" style="background-color: #f8fafc; border-left: 5px solid #07244b;">
+              <h3 style="color: #07244b; font-weight: 700; font-size: 1.4rem; margin-bottom: 15px;"><i class="fa fa-money"></i> School Fees Structure</h3>
+
+              {% if course.fees_structure_text %}
+              <div class="fees-text-info mb-4" style="white-space: pre-line; color: #475569; line-height: 1.7; font-size: 0.95rem;">
+                {{ course.fees_structure_text }}
+              </div>
+              {% endif %}
+
+              {% if course.fees_structure_pdf %}
+              <div class="pdf-download-action">
+                <a href="{{ course.fees_structure_pdf.url }}" target="_blank" class="btn text-white font-weight-bold" style="background-color: #07244b; border-radius: 30px; padding: 10px 24px; font-size: 0.9rem; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#956c34';" onmouseout="this.style.backgroundColor='#07244b';">
+                  <i class="fa fa-file-pdf-o"></i> Download School Fees Structure PDF
+                </a>
+              </div>
+              {% elif not course.fees_structure_text %}
+              <p class="text-muted small">School fees structure details are currently being updated by the administration. Contact the admissions desk for immediate quotes.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar / Admission Meta -->
+        <div class="col-lg-4">
+          <div class="admission-sidebar-card p-4 rounded shadow-sm" style="border: 1px solid #eaeaea; background-color: #f8fafc; position: sticky; top: 100px;">
+            <h4 style="color: #07244b; font-weight: 700; margin-bottom: 20px; border-bottom: 2px solid #f5a425; padding-bottom: 10px;">Admission Dashboard</h4>
+
+            <ul style="list-style: none; padding: 0; margin: 0 0 30px 0;">
+              <li class="d-flex justify-content-between py-3" style="border-bottom: 1px solid #e2e8f0;">
+                <span class="text-muted"><i class="fa fa-graduation-cap"></i> Level:</span>
+                <span class="font-weight-bold text-dark">{{ course.level }}</span>
+              </li>
+              <li class="d-flex justify-content-between py-3" style="border-bottom: 1px solid #e2e8f0;">
+                <span class="text-muted"><i class="fa fa-credit-card"></i> Application Fee:</span>
+                <span class="font-weight-bold" style="color: #956c34; font-size: 1.1rem;">KES {{ course.application_fee|floatformat:2 }}</span>
+              </li>
+              <li class="d-flex justify-content-between py-3" style="border-bottom: 1px solid #e2e8f0;">
+                <span class="text-muted"><i class="fa fa-calendar"></i> Intake status:</span>
+                <span class="badge badge-success font-weight-bold px-3 py-1" style="background-color: #22c55e; color: #ffffff; border-radius: 10px;">OPEN</span>
+              </li>
+            </ul>
+
+            <!-- Apply Now Button -->
+            <a href="{% url 'apply' course_id=course.id %}" class="btn btn-block text-white font-weight-bold py-3" style="background-color: #956c34; border-radius: 30px; font-size: 1.1rem; transition: background-color 0.3s; box-shadow: 0 4px 15px rgba(149, 108, 52, 0.3);" onmouseover="this.style.backgroundColor='#07244b';" onmouseout="this.style.backgroundColor='#956c34';">
+              Apply Now <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

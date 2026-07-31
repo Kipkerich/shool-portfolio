@@ -23,115 +23,33 @@
     <div class="container">
       <div class="row">
 
-        <!-- Article 1 -->
+        {% for blog in blogs %}
+        <!-- Article -->
         <div class="col-12 mb-5">
           <div class="card border-0 shadow-sm overflow-hidden news-horizontal-card">
             <div class="row no-gutters">
               <div class="col-lg-4 news-img-container">
-                <img src="{% static 'images/blog-1.jpg' %}" class="h-100 w-100" style="object-fit: cover; min-height: 250px;" alt="WTI Intake Opening" onerror="this.src='https://placehold.co/600x400?text=Campus+News'">
+                <img src="{% if blog.image %}{{ blog.image.url }}{% elif blog.image_path %}{% static blog.image_path %}{% else %}https://placehold.co/600x400?text=Campus+News{% endif %}" class="h-100 w-100" style="object-fit: cover; min-height: 250px;" alt="{{ blog.title }}" onerror="this.src='https://placehold.co/600x400?text=Campus+News'">
               </div>
               <div class="col-lg-8 d-flex align-items-center">
                 <div class="card-body p-4 p-md-5">
                   <div class="news-category-date mb-3">
-                    <span class="badge badge-warning text-dark font-weight-bold px-3 py-2 mr-2" style="border-radius: 20px; background-color: #f5a425;">Announcements</span>
-                    <span class="text-muted small"><i class="fa fa-calendar-o mr-1"></i> March 12, 2026</span>
+                    <span class="badge badge-warning text-dark font-weight-bold px-3 py-2 mr-2" style="border-radius: 20px; background-color: #f5a425;">{{ blog.category }}</span>
+                    <span class="text-muted small"><i class="fa fa-calendar-o mr-1"></i> {{ blog.date|date:"F d, Y" }}</span>
                   </div>
-                  <h3 class="font-weight-bold mb-3"><a href="#" class="hover-gold text-dark" style="text-decoration: none; font-size: 1.6rem;">Admissions Officially Open for Next Intake</a></h3>
-                  <p class="text-muted mb-4" style="line-height: 1.7; font-size: 1rem;">Wama Training Institute is thrilled to announce that applications are now officially open for our upcoming intake cohorts. Ensure you secure early clinical placement paths by submitting your enrollment forms today. We offer TVETA accredited programs designed for healthcare success.</p>
+                  <h3 class="font-weight-bold mb-3"><a href="#" class="hover-gold text-dark" style="text-decoration: none; font-size: 1.6rem;">{{ blog.title }}</a></h3>
+                  <p class="text-muted mb-4" style="line-height: 1.7; font-size: 1rem;">{{ blog.content }}</p>
                   <a href="#" class="btn-read-more font-weight-bold d-inline-block" style="font-size: 0.95rem;">Read Full Article <i class="fa fa-arrow-right ml-1"></i></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Article 2 -->
-        <div class="col-12 mb-5">
-          <div class="card border-0 shadow-sm overflow-hidden news-horizontal-card">
-            <div class="row no-gutters">
-              <div class="col-lg-4 news-img-container">
-                <img src="{% static 'images/blog-2.jpg' %}" class="h-100 w-100" style="object-fit: cover; min-height: 250px;" alt="Clinical Attachments" onerror="this.src='https://placehold.co/600x400?text=Clinical+Placements'">
-              </div>
-              <div class="col-lg-8 d-flex align-items-center">
-                <div class="card-body p-4 p-md-5">
-                  <div class="news-category-date mb-3">
-                    <span class="badge badge-warning text-dark font-weight-bold px-3 py-2 mr-2" style="border-radius: 20px; background-color: #f5a425;">Student Life</span>
-                    <span class="text-muted small"><i class="fa fa-calendar-o mr-1"></i> February 28, 2026</span>
-                  </div>
-                  <h3 class="font-weight-bold mb-3"><a href="#" class="hover-gold text-dark" style="text-decoration: none; font-size: 1.6rem;">The Value of Early Hands-On Hospital Exposure</a></h3>
-                  <p class="text-muted mb-4" style="line-height: 1.7; font-size: 1rem;">Discover how WTI's structural integration with active, fully-functional clinical wards provides medical trainees with invaluable hands-on hospital exposure early in their academic journey. Learn why transitioning concepts directly into real clinics builds superior clinical confidence.</p>
-                  <a href="#" class="btn-read-more font-weight-bold d-inline-block" style="font-size: 0.95rem;">Read Full Article <i class="fa fa-arrow-right ml-1"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+          <p class="text-muted">No news and blog articles available at this time.</p>
         </div>
-
-        <!-- Article 3 -->
-        <div class="col-12 mb-5">
-          <div class="card border-0 shadow-sm overflow-hidden news-horizontal-card">
-            <div class="row no-gutters">
-              <div class="col-lg-4 news-img-container">
-                <img src="{% static 'images/blog-3.jpg' %}" class="h-100 w-100" style="object-fit: cover; min-height: 250px;" alt="Accreditation update" onerror="this.src='https://placehold.co/600x400?text=TVETA+Standards'">
-              </div>
-              <div class="col-lg-8 d-flex align-items-center">
-                <div class="card-body p-4 p-md-5">
-                  <div class="news-category-date mb-3">
-                    <span class="badge badge-warning text-dark font-weight-bold px-3 py-2 mr-2" style="border-radius: 20px; background-color: #f5a425;">Compliance</span>
-                    <span class="text-muted small"><i class="fa fa-calendar-o mr-1"></i> January 15, 2026</span>
-                  </div>
-                  <h3 class="font-weight-bold mb-3"><a href="#" class="hover-gold text-dark" style="text-decoration: none; font-size: 1.6rem;">WTI Renews Quality Standards for Technical Courses</a></h3>
-                  <p class="text-muted mb-4" style="line-height: 1.7; font-size: 1rem;">A close-up analysis of WTI's persistent engineering alignments with the Technical and Vocational Education and Training Authority (TVETA) quality benchmarks. We remain committed to sustaining premium, top-tier medical education standards within Ongata Rongai, Kenya.</p>
-                  <a href="#" class="btn-read-more font-weight-bold d-inline-block" style="font-size: 0.95rem;">Read Full Article <i class="fa fa-arrow-right ml-1"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Article 4 -->
-        <div class="col-12 mb-5">
-          <div class="card border-0 shadow-sm overflow-hidden news-horizontal-card">
-            <div class="row no-gutters">
-              <div class="col-lg-4 news-img-container">
-                <img src="{% static 'images/phlebotomy-img.jpg' %}" class="h-100 w-100" style="object-fit: cover; min-height: 250px;" alt="Phlebotomy Career" onerror="this.src='https://placehold.co/600x400?text=Phlebotomy'">
-              </div>
-              <div class="col-lg-8 d-flex align-items-center">
-                <div class="card-body p-4 p-md-5">
-                  <div class="news-category-date mb-3">
-                    <span class="badge badge-warning text-dark font-weight-bold px-3 py-2 mr-2" style="border-radius: 20px; background-color: #f5a425;">Medical Insights</span>
-                    <span class="text-muted small"><i class="fa fa-calendar-o mr-1"></i> December 20, 2025</span>
-                  </div>
-                  <h3 class="font-weight-bold mb-3"><a href="#" class="hover-gold text-dark" style="text-decoration: none; font-size: 1.6rem;">Why Phlebotomy is a Rapidly Growing Healthcare Career</a></h3>
-                  <p class="text-muted mb-4" style="line-height: 1.7; font-size: 1rem;">Phlebotomists play a vital role in patient diagnosis and lab safety. In this insight article, our medical faculty outlines the growing national demand for certified phlebotomy technicians and how a short, rigorous course can launch your medical career in under six months.</p>
-                  <a href="#" class="btn-read-more font-weight-bold d-inline-block" style="font-size: 0.95rem;">Read Full Article <i class="fa fa-arrow-right ml-1"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Article 5 -->
-        <div class="col-12 mb-5">
-          <div class="card border-0 shadow-sm overflow-hidden news-horizontal-card">
-            <div class="row no-gutters">
-              <div class="col-lg-4 news-img-container">
-                <img src="{% static 'images/perioperative-img.jpg' %}" class="h-100 w-100" style="object-fit: cover; min-height: 250px;" alt="Perioperative Career" onerror="this.src='https://placehold.co/600x400?text=Perioperative+Technology'">
-              </div>
-              <div class="col-lg-8 d-flex align-items-center">
-                <div class="card-body p-4 p-md-5">
-                  <div class="news-category-date mb-3">
-                    <span class="badge badge-warning text-dark font-weight-bold px-3 py-2 mr-2" style="border-radius: 20px; background-color: #f5a425;">Education</span>
-                    <span class="text-muted small"><i class="fa fa-calendar-o mr-1"></i> November 15, 2025</span>
-                  </div>
-                  <h3 class="font-weight-bold mb-3"><a href="#" class="hover-gold text-dark" style="text-decoration: none; font-size: 1.6rem;">Essential Skills for Modern Perioperative Technicians</a></h3>
-                  <p class="text-muted mb-4" style="line-height: 1.7; font-size: 1rem;">Working inside an active surgical operating theatre requires impeccable discipline, sterilisation expertise, and deep teamwork. We break down the absolute core technical competencies required for modern Level 5 and Level 6 TVET perioperative graduates today.</p>
-                  <a href="#" class="btn-read-more font-weight-bold d-inline-block" style="font-size: 0.95rem;">Read Full Article <i class="fa fa-arrow-right ml-1"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
 
       </div>
     </div>

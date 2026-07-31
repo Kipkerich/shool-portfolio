@@ -21,42 +21,31 @@
   <section class="section courses-list" style="padding: 80px 0; background-color: #f8fafc;">
     <div class="container">
       <div class="row">
-        <!-- Course 1 -->
+        {% for course in courses %}
+        <!-- Course Card -->
         <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card border-0 shadow-sm h-100">
-            <div class="course-img-wrapper">
-              <img src="{% static 'images/perioperative-img.jpg' %}" alt="Perioperative Theatre Technology" onerror="this.src='https://placehold.co/600x400?text=Perioperative+Technology'">
+          <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-radius: 12px; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+            <div class="course-img-wrapper" style="position: relative; height: 220px; overflow: hidden;">
+              <img src="{% if course.image %}{{ course.image.url }}{% elif course.image_path %}{% static course.image_path %}{% else %}https://placehold.co/600x400?text=Course{% endif %}" alt="{{ course.title }}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://placehold.co/600x400?text=Course'">
             </div>
-            <div class="card-body p-4">
-              <h5 style="color: #07244b; font-weight: 700;">Perioperative Theatre Technology</h5>
-              <p class="text-muted small mt-2">Level 5 & 6 TVETA accredited program.</p>
+            <div class="card-body p-4 d-flex flex-column justify-content-between">
+              <div>
+                <span class="badge badge-warning text-dark font-weight-bold px-3 py-1 mb-2" style="background-color: #f5a425; border-radius: 20px; font-size: 0.8rem;">{{ course.level }}</span>
+                <h5 style="color: #07244b; font-weight: 700; margin-bottom: 15px;">{{ course.title }}</h5>
+                <p class="text-muted small" style="line-height: 1.6;">{{ course.description|truncatechars:120 }}</p>
+              </div>
+              <div class="mt-4 pt-3 border-top d-flex align-items-center justify-content-between">
+                <span class="font-weight-bold text-muted" style="font-size: 0.9rem;">Fee: KES {{ course.application_fee|floatformat:2 }}</span>
+                <a href="{% url 'course_detail' course_id=course.id %}" class="btn text-white font-weight-bold" style="background-color: #956c34; border-radius: 30px; font-size: 0.85rem; padding: 6px 18px; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#07244b';" onmouseout="this.style.backgroundColor='#956c34';">Read More</a>
+              </div>
             </div>
           </div>
         </div>
-        <!-- Course 2 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card border-0 shadow-sm h-100">
-            <div class="course-img-wrapper">
-              <img src="{% static 'images/phlebotomy-img.jpg' %}" alt="Phlebotomy Techniques" onerror="this.src='https://placehold.co/600x400?text=Phlebotomy+Techniques'">
-            </div>
-            <div class="card-body p-4">
-              <h5 style="color: #07244b; font-weight: 700;">Phlebotomy Techniques</h5>
-              <p class="text-muted small mt-2">Short Certification Course for healthcare professionals.</p>
-            </div>
-          </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+          <p class="text-muted">No courses are currently available. Check back soon!</p>
         </div>
-        <!-- Course 3 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card border-0 shadow-sm h-100">
-            <div class="course-img-wrapper">
-              <img src="{% static 'images/course.jpg' %}" alt="Health Support Services" onerror="this.src='https://placehold.co/600x400?text=Health+Support+Services'">
-            </div>
-            <div class="card-body p-4">
-              <h5 style="color: #07244b; font-weight: 700;">Health Support Services</h5>
-              <p class="text-muted small mt-2">Level 5 TVETA course in clinical nursing assistant competencies.</p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>

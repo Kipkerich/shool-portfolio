@@ -266,8 +266,9 @@
     color: #956c34 !important;
 }
 
-.faq-btn[aria-expanded="true"] .faq-icon {
-    transform: rotate(180deg);
+.faq-btn[aria-expanded="true"] .faq-icon,
+.faq-btn:not(.collapsed) .faq-icon {
+    transform: rotate(180deg) !important;
     color: #956c34;
 }
 
