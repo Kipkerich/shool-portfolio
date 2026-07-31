@@ -1,7 +1,31 @@
 from django.test import TestCase
 from django.urls import reverse
+from .models import Blog, FAQ
+import datetime
 
 class WTIPagesTestCase(TestCase):
+    def setUp(self):
+        # Create mock Blog posts
+        Blog.objects.create(
+            title="Admissions Officially Open for Next Intake",
+            category="Announcements",
+            date=datetime.date(2026, 3, 12),
+            content="Applications are now actively being processed...",
+            image_path="images/blog-1.jpg"
+        )
+
+        # Create mock FAQs
+        FAQ.objects.create(
+            question="Is Wama Training Institute registered and accredited?",
+            answer="Yes, Wama Training Institute (WTI) is fully registered and accredited...",
+            order=1
+        )
+        FAQ.objects.create(
+            question="Where is Wama Training Institute located?",
+            answer="We are conveniently located in Ongata Rongai...",
+            order=2
+        )
+
     def test_home_page_status_code(self):
         """Test that the homepage returns status code 200 and uses correct template."""
         response = self.client.get(reverse('home'))

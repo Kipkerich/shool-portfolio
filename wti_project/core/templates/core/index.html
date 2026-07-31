@@ -220,71 +220,33 @@
         </div>
       </div>
       <div class="row">
-        <!-- Article 1 -->
+        {% for blog in blogs %}
+        <!-- Article -->
         <div class="col-12 mb-4">
           <div class="card border-0 shadow-sm overflow-hidden news-horizontal-card">
             <div class="row no-gutters">
               <div class="col-md-4 news-img-container">
-                <img src="{% static 'images/blog-1.jpg' %}" class="h-100 w-100" style="object-fit: cover; min-height: 200px;" alt="WTI Intake Opening" onerror="this.src='https://placehold.co/600x400?text=Campus+News'">
+                <img src="{% if blog.image %}{{ blog.image.url }}{% elif blog.image_path %}{% static blog.image_path %}{% else %}https://placehold.co/600x400?text=Campus+News{% endif %}" class="h-100 w-100" style="object-fit: cover; min-height: 200px;" alt="{{ blog.title }}" onerror="this.src='https://placehold.co/600x400?text=Campus+News'">
               </div>
               <div class="col-md-8 d-flex align-items-center">
                 <div class="card-body p-4">
                   <div class="news-category-date mb-2">
-                    <span class="badge badge-warning text-dark font-weight-bold px-3 py-1 mr-2" style="background-color: #f5a425; border-radius: 20px;">Announcements</span>
-                    <span class="text-muted small"><i class="fa fa-calendar-o mr-1"></i> March 12, 2026</span>
+                    <span class="badge badge-warning text-dark font-weight-bold px-3 py-1 mr-2" style="background-color: #f5a425; border-radius: 20px;">{{ blog.category }}</span>
+                    <span class="text-muted small"><i class="fa fa-calendar-o mr-1"></i> {{ blog.date|date:"F d, Y" }}</span>
                   </div>
-                  <h4 class="font-weight-bold mb-2"><a href="{% url 'blog' %}" class="hover-gold">Admissions Officially Open for Next Intake</a></h4>
-                  <p class="text-muted small" style="line-height: 1.6; font-size: 0.95rem;">Applications are now actively being processed for our upcoming healthcare cohorts. Register today and secure your clinical attachments and hands-on laboratory learning paths smoothly.</p>
+                  <h4 class="font-weight-bold mb-2"><a href="{% url 'blog' %}" class="hover-gold">{{ blog.title }}</a></h4>
+                  <p class="text-muted small" style="line-height: 1.6; font-size: 0.95rem;">{{ blog.content }}</p>
                   <a href="{% url 'blog' %}" class="btn-read-more font-weight-bold d-inline-block mt-2">Read Full Article <i class="fa fa-arrow-right ml-1"></i></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Article 2 -->
-        <div class="col-12 mb-4">
-          <div class="card border-0 shadow-sm overflow-hidden news-horizontal-card">
-            <div class="row no-gutters">
-              <div class="col-md-4 news-img-container">
-                <img src="{% static 'images/blog-2.jpg' %}" class="h-100 w-100" style="object-fit: cover; min-height: 200px;" alt="Clinical Attachments" onerror="this.src='https://placehold.co/600x400?text=Clinical+Placements'">
-              </div>
-              <div class="col-md-8 d-flex align-items-center">
-                <div class="card-body p-4">
-                  <div class="news-category-date mb-2">
-                    <span class="badge badge-warning text-dark font-weight-bold px-3 py-1 mr-2" style="background-color: #f5a425; border-radius: 20px;">Student Life</span>
-                    <span class="text-muted small"><i class="fa fa-calendar-o mr-1"></i> February 28, 2026</span>
-                  </div>
-                  <h4 class="font-weight-bold mb-2"><a href="{% url 'blog' %}" class="hover-gold">The Value of Early Hands-On Hospital Exposure</a></h4>
-                  <p class="text-muted small" style="line-height: 1.6; font-size: 0.95rem;">Discover how WTI's strategic structural pairing with working clinical medical centers sets up our trainees to excel in practical confidence and build real-world competency early.</p>
-                  <a href="{% url 'blog' %}" class="btn-read-more font-weight-bold d-inline-block mt-2">Read Full Article <i class="fa fa-arrow-right ml-1"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+        {% empty %}
+        <div class="col-12 text-center py-4">
+          <p class="text-muted">No news and blog articles available at this time.</p>
         </div>
-
-        <!-- Article 3 -->
-        <div class="col-12 mb-4">
-          <div class="card border-0 shadow-sm overflow-hidden news-horizontal-card">
-            <div class="row no-gutters">
-              <div class="col-md-4 news-img-container">
-                <img src="{% static 'images/blog-3.jpg' %}" class="h-100 w-100" style="object-fit: cover; min-height: 200px;" alt="Accreditation update" onerror="this.src='https://placehold.co/600x400?text=TVETA+Standards'">
-              </div>
-              <div class="col-md-8 d-flex align-items-center">
-                <div class="card-body p-4">
-                  <div class="news-category-date mb-2">
-                    <span class="badge badge-warning text-dark font-weight-bold px-3 py-1 mr-2" style="background-color: #f5a425; border-radius: 20px;">Compliance</span>
-                    <span class="text-muted small"><i class="fa fa-calendar-o mr-1"></i> January 15, 2026</span>
-                  </div>
-                  <h4 class="font-weight-bold mb-2"><a href="{% url 'blog' %}" class="hover-gold">WTI Renews Quality Standards for Technical Courses</a></h4>
-                  <p class="text-muted small" style="line-height: 1.6; font-size: 0.95rem;">A close look at our persistent structural and educational alignments with technical TVETA quality assurance frameworks to sustain premium medical training inside Kenya.</p>
-                  <a href="{% url 'blog' %}" class="btn-read-more font-weight-bold d-inline-block mt-2">Read Full Article <i class="fa fa-arrow-right ml-1"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -305,90 +267,28 @@
         <div class="col-lg-10 mx-auto">
           <div class="accordion faq-container" id="wtiFaqAccordion">
 
-            <!-- FAQ 1 -->
-            <div class="card faq-card active-item">
-              <div class="card-header faq-header" id="faqHeading1">
+            {% for faq in faqs %}
+            <!-- FAQ {{ forloop.counter }} -->
+            <div class="card faq-card{% if forloop.first %} active-item{% endif %}">
+              <div class="card-header faq-header" id="faqHeading{{ faq.id }}">
                 <h5 class="mb-0">
-                  <button class="btn btn-link faq-btn" type="button" data-toggle="collapse" data-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
-                    Is Wama Training Institute registered and accredited?
+                  <button class="btn btn-link faq-btn{% if not forloop.first %} collapsed{% endif %}" type="button" data-toggle="collapse" data-target="#faqCollapse{{ faq.id }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="faqCollapse{{ faq.id }}">
+                    {{ faq.question }}
                     <i class="fa fa-chevron-down faq-icon"></i>
                   </button>
                 </h5>
               </div>
-              <div id="faqCollapse1" class="collapse show" aria-labelledby="faqHeading1" data-parent="#wtiFaqAccordion">
+              <div id="faqCollapse{{ faq.id }}" class="collapse{% if forloop.first %} show{% endif %}" aria-labelledby="faqHeading{{ faq.id }}" data-parent="#wtiFaqAccordion">
                 <div class="card-body faq-body">
-                  Yes, Wama Training Institute (WTI) is fully registered and accredited by the Technical and Vocational Education and Training Authority (TVETA) under national regulatory quality frameworks inside Kenya. Our academic curricula align precisely with approved TVET directives to ensure premium quality compliance.
+                  {{ faq.answer }}
                 </div>
               </div>
             </div>
-
-            <!-- FAQ 2 -->
-            <div class="card faq-card">
-              <div class="card-header faq-header" id="faqHeading2">
-                <h5 class="mb-0">
-                  <button class="btn btn-link faq-btn collapsed" type="button" data-toggle="collapse" data-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
-                    What are the core entry requirements for healthcare courses?
-                    <i class="fa fa-chevron-down faq-icon"></i>
-                  </button>
-                </h5>
-              </div>
-              <div id="faqCollapse2" class="collapse" aria-labelledby="faqHeading2" data-parent="#wtiFaqAccordion">
-                <div class="card-body faq-body">
-                  Entry requirements depend on the specific program. For our certified Level 5 and Level 6 TVET programs (such as Perioperative Theatre Technology or Health Support Services), a KCSE mean grade of C- or D (depending on level) is standard. For shorter specialized programs (like Phlebotomy Techniques), we accommodate flexible credentials. Admissions officers are available to perform personal grade assessments.
-                </div>
-              </div>
+            {% empty %}
+            <div class="col-12 text-center py-4">
+              <p class="text-muted">No FAQs available at this time.</p>
             </div>
-
-            <!-- FAQ 3 -->
-            <div class="card faq-card">
-              <div class="card-header faq-header" id="faqHeading3">
-                <h5 class="mb-0">
-                  <button class="btn btn-link faq-btn collapsed" type="button" data-toggle="collapse" data-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
-                    Do students receive direct clinical placement or hospital attachments?
-                    <i class="fa fa-chevron-down faq-icon"></i>
-                  </button>
-                </h5>
-              </div>
-              <div id="faqCollapse3" class="collapse" aria-labelledby="faqHeading3" data-parent="#wtiFaqAccordion">
-                <div class="card-body faq-body">
-                  Absolutely! One of the outstanding benefits of studying at WTI is our systematic placement coordination. Because we are closely integrated with active, fully-equipped medical hospitals and diagnostic centers, our students gain direct, seamless, hands-on clinical exposure very early in their courses.
-                </div>
-              </div>
-            </div>
-
-            <!-- FAQ 4 -->
-            <div class="card faq-card">
-              <div class="card-header faq-header" id="faqHeading4">
-                <h5 class="mb-0">
-                  <button class="btn btn-link faq-btn collapsed" type="button" data-toggle="collapse" data-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
-                    Where is Wama Training Institute located?
-                    <i class="fa fa-chevron-down faq-icon"></i>
-                  </button>
-                </h5>
-              </div>
-              <div id="faqCollapse4" class="collapse" aria-labelledby="faqHeading4" data-parent="#wtiFaqAccordion">
-                <div class="card-body faq-body">
-                  We are conveniently located in Ongata Rongai, Kajiado County, Kenya. Our campus is set in a quiet, safe, and professional clinical learning environment equipped with modern skills laboratories and lecture halls.
-                </div>
-              </div>
-            </div>
-
-            <!-- FAQ 5 -->
-            <div class="card faq-card">
-              <div class="card-header faq-header" id="faqHeading5">
-                <h5 class="mb-0">
-                  <button class="btn btn-link faq-btn collapsed" type="button" data-toggle="collapse" data-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
-                    How can I apply or download application materials?
-                    <i class="fa fa-chevron-down faq-icon"></i>
-                  </button>
-                </h5>
-              </div>
-              <div id="faqCollapse5" class="collapse" aria-labelledby="faqHeading5" data-parent="#wtiFaqAccordion">
-                <div class="card-body faq-body">
-                  You can apply directly by visiting our Ongata Rongai campus, or by filling out the inquiry form on our "Contact" page. Our admissions counselors will immediately reach out to supply you with full registration resources, the complete fee structures, and the current intake options.
-                </div>
-              </div>
-            </div>
+            {% endfor %}
 
           </div>
         </div>
