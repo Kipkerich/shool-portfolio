@@ -1,0 +1,81 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Application Payment | Wama Training Institute{% endblock %}
+
+{% block content %}
+  <!-- Page Header -->
+  <section class="page-heading" style="background-image: url({% static 'images/courses-bg.jpg' %}); padding: 120px 0 80px; background-position: center; background-size: cover; position: relative;">
+      <div class="video-overlay" style="background-color: rgba(7, 36, 75, 0.85); position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+          <div class="row">
+              <div class="col-md-12 text-center text-white">
+                  <span class="text-uppercase" style="letter-spacing: 2px; color: #f5a425; font-weight: 700; font-size: 0.9rem;">Final Step: Payment</span>
+                  <h1 style="font-weight: 800; font-size: 2.8rem; margin-top: 10px; margin-bottom: 15px;">Application Processing Fee</h1>
+                  <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; opacity: 0.9;">Secure application fee payment via Paystack.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Payment Block -->
+  <section class="section payment-paystack" style="padding: 80px 0; background-color: #f8fafc;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+          <div class="card border-0 shadow-sm p-4 p-md-5 text-center" style="border-radius: 12px; background-color: #ffffff;">
+            <div class="payment-icon mb-4">
+              <i class="fa fa-credit-card-alt" style="font-size: 4rem; color: #f5a425;"></i>
+            </div>
+
+            <h2 style="color: #07244b; font-weight: 700; font-size: 1.8rem; margin-bottom: 15px;">Application Fee Summary</h2>
+            <p class="text-muted mb-4">You are registering for <strong>{{ course.title }}</strong>. Please complete the application processing fee payment to finalize your enrollment request.</p>
+
+            <div class="fee-card p-4 rounded mb-5" style="background-color: #f8fafc; border: 1px solid #eaeaea; display: flex; justify-content: space-between; align-items: center;">
+              <span class="font-weight-bold text-muted text-uppercase" style="font-size: 0.85rem; letter-spacing: 0.5px;">Amount Due:</span>
+              <span class="font-weight-bold" style="color: #07244b; font-size: 1.6rem;">KES {{ course.application_fee|floatformat:2 }}</span>
+            </div>
+
+            <!-- Paystack Action Button -->
+            <button id="payWithPaystackBtn" class="btn btn-block text-white font-weight-bold py-3" style="background-color: #25D366; border-radius: 30px; font-size: 1.1rem; width: 100%; transition: background-color 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); border: none;" onclick="payWithPaystack()">
+              Pay Securely with Paystack <i class="fa fa-lock ml-1"></i>
+            </button>
+
+            <p class="text-muted small mt-4"><i class="fa fa-shield"></i> Payments are processed securely via Paystack. Your credit card or mobile money information is never stored.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block extra_js %}
+  <!-- Paystack Inline Popup JS Library -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script>
+    function payWithPaystack() {
+        var handler = PaystackPop.setup({
+            key: '{{ paystack_public_key }}',
+            email: '{{ student_email }}',
+            amount: {{ amount_kobo }},
+            currency: 'KES',
+            ref: 'WTI-' + Math.floor((Math.random() * 1000000000) + 1), // Generate random reference
+            callback: function(response) {
+                // Payment was successful, redirect to callback url to update status
+                var reference = response.reference;
+                window.location.href = "{% url 'payment_callback' course_id=course.id %}?reference=" + reference + "&submission_id={{ submission.id }}";
+            },
+            onClose: function() {
+                alert('Payment window was closed. Please complete the payment to process your application.');
+            }
+        });
+        handler.openIframe();
+    }
+
+    // Automatically trigger pay with paystack on page load
+    window.onload = function() {
+        // Wait 1 second before auto-opening to make it look smooth
+        setTimeout(payWithPaystack, 800);
+    };
+  </script>
+{% endblock %}
