@@ -283,3 +283,10 @@
 .heading-line {
     border-radius: 2px;
 }
+
+/* Disable hover background/shadow effects on core pillars features */
+.features-content:hover {
+    background-color: #07244b !important;
+    box-shadow: none !important;
+    transform: none !important;
+}

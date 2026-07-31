@@ -15,7 +15,7 @@
 	videoPopup();
 
 
-	$('.owl-carousel').owlCarousel({
+	$('.owl-carousel:not(.why-us-carousel):not(.courses-carousel)').owlCarousel({
 	    loop:true,
 	    margin:30,
 	    nav:true,
@@ -59,14 +59,7 @@
 	});
 
 
-	$("div.features-post").hover(
-	    function() {
-	        $(this).find("div.content-hide").slideToggle("medium");
-	    },
-	    function() {
-	        $(this).find("div.content-hide").slideToggle("medium");
-	    }
-	 );
+	// Hover effect removed from school mission, vision, and values as requested
 
 
 	$( "#tabs" ).tabs();
