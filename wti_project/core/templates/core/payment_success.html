@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Application Success | Wama Training Institute{% endblock %}
+
+{% block content %}
+  <!-- Page Header -->
+  <section class="page-heading" style="background-image: url({% static 'images/courses-bg.jpg' %}); padding: 120px 0 80px; background-position: center; background-size: cover; position: relative;">
+      <div class="video-overlay" style="background-color: rgba(7, 36, 75, 0.85); position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+          <div class="row">
+              <div class="col-md-12 text-center text-white">
+                  <span class="text-uppercase" style="letter-spacing: 2px; color: #22c55e; font-weight: 700; font-size: 0.9rem;"><i class="fa fa-check-circle"></i> Complete</span>
+                  <h1 style="font-weight: 800; font-size: 2.8rem; margin-top: 10px; margin-bottom: 15px;">Application Submitted</h1>
+                  <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; opacity: 0.9;">Thank you for applying to Wama Training Institute.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Success Block -->
+  <section class="section payment-success" style="padding: 80px 0; background-color: #f8fafc;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+          <div class="card border-0 shadow-sm p-4 p-md-5 text-center" style="border-radius: 12px; background-color: #ffffff;">
+            <div class="success-icon mb-4">
+              <i class="fa fa-check-circle-o" style="font-size: 5rem; color: #22c55e;"></i>
+            </div>
+
+            <h2 style="color: #07244b; font-weight: 700; font-size: 1.8rem; margin-bottom: 15px;">Congratulations!</h2>
+            <p class="text-muted mb-5">Your enrollment application for <strong>{{ course.title }}</strong> has been successfully captured and processed. Our academic and admissions board will review your credentials and contact you within 24 to 48 hours.</p>
+
+            <div class="next-steps-card p-4 rounded text-left mb-5" style="background-color: #f8fafc; border: 1px solid #eaeaea;">
+              <h4 style="color: #07244b; font-weight: 700; font-size: 1.1rem; margin-bottom: 15px;"><i class="fa fa-list-ol"></i> What Happens Next?</h4>
+              <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; font-size: 0.95rem; color: #475569;">
+                <li style="margin-bottom: 10px;"><i class="fa fa-angle-right text-success mr-2"></i> An admissions officer will perform a certificate evaluation.</li>
+                <li style="margin-bottom: 10px;"><i class="fa fa-angle-right text-success mr-2"></i> You will receive an official admission letter and clinical guidelines email.</li>
+                <li style="margin-bottom: 10px;"><i class="fa fa-angle-right text-success mr-2"></i> For any immediate enquiries, call us directly on <strong>0792082773</strong>.</li>
+              </ul>
+            </div>
+
+            <a href="{% url 'home' %}" class="btn btn-block text-white font-weight-bold py-3" style="background-color: #07244b; border-radius: 30px; font-size: 1rem; width: 100%; transition: background-color 0.3s; box-shadow: 0 4px 15px rgba(7, 36, 75, 0.2);" onmouseover="this.style.backgroundColor='#956c34';" onmouseout="this.style.backgroundColor='#07244b';">
+              <i class="fa fa-home"></i> Back to Homepage
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
