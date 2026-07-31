@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/templatemo-grad-school.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.css' %}">
     <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom-enhancements.css' %}">
 </head>
 <body>
 
@@ -43,8 +44,8 @@
         <li class="{% if request.resolver_match.url_name == 'courses' %}active{% endif %}">
             <a href="{% url 'courses' %}">Courses</a>
         </li>
-        <li>
-            <a href="https://learn.wamahospital.org/accounts/login/" class="external" target="_blank">Portal</a>
+        <li class="{% if request.resolver_match.url_name == 'blog' %}active{% endif %}">
+            <a href="{% url 'blog' %}">Blog</a>
         </li>
         <li class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
             <a href="{% url 'contact' %}">Contact</a>
@@ -58,12 +59,58 @@
   {% endblock %}
 
   <!-- Universal Footer -->
-  <footer>
+  <footer class="site-footer" style="background-color: #07244b; color: #ffffff; padding: 60px 0 30px; font-size: 0.95rem; border-top: 3px solid #f5a425;">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <p><i class="fa fa-copyright"></i> Copyright 2026 Wama Training Institute 
-          | Design: <a href="https://kipkerich.github.io/mysite/" target="_blank">Pixel Architect</a></p>
+        <!-- First Column: Available Pages -->
+        <div class="col-md-6 mb-4">
+          <h5 style="color: #f5a425; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">Available Pages</h5>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 10px;"><a href="{% url 'home' %}" style="color: #ffffff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'">Home</a></li>
+            <li style="margin-bottom: 10px;"><a href="{% url 'about' %}" style="color: #ffffff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'">About Us</a></li>
+            <li style="margin-bottom: 10px;"><a href="{% url 'courses' %}" style="color: #ffffff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'">Courses</a></li>
+            <li style="margin-bottom: 10px;"><a href="{% url 'blog' %}" style="color: #ffffff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'">Blog</a></li>
+            <li style="margin-bottom: 10px;"><a href="{% url 'contact' %}" style="color: #ffffff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Second Column: Portals & Admin -->
+        <div class="col-md-6 mb-4">
+          <h5 style="color: #f5a425; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">Quick Links</h5>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 10px;"><a href="https://learn.wamahospital.org/accounts/login/" target="_blank" style="color: #ffffff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'"><i class="fa fa-graduation-cap"></i> Student Portal</a></li>
+            <li style="margin-bottom: 10px;"><a href="/admin/" style="color: #ffffff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'"><i class="fa fa-lock"></i> Admin Portal</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
+
+      <!-- Footer Bottom Contact and Social Media Links -->
+      <div class="row align-items-center">
+        <div class="col-lg-8 mb-3 mb-lg-0">
+          <p style="margin: 0; line-height: 1.8; color: #cbd5e1;">
+            <strong>Location:</strong> Ongata Rongai |
+            <strong>Phone:</strong> <a href="tel:0792082773" style="color: #ffffff; text-decoration: none;">0792082773</a> |
+            <strong>Enquiries:</strong> <a href="mailto:info@wamatraininginstitute.ac.ke" style="color: #ffffff; text-decoration: none;">info@wamatraininginstitute.ac.ke</a>, <a href="mailto:wamatraininginstitute@gmail.com" style="color: #ffffff; text-decoration: none;">wamatraininginstitute@gmail.com</a>
+          </p>
+        </div>
+        <div class="col-lg-4 text-lg-right">
+          <div class="social-icons" style="display: inline-flex; gap: 15px;">
+            <a href="#" style="color: #ffffff; font-size: 1.25rem; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'" title="TikTok"><i class="fa fa-music"></i></a>
+            <a href="#" style="color: #ffffff; font-size: 1.25rem; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'" title="Instagram"><i class="fa fa-instagram"></i></a>
+            <a href="#" style="color: #ffffff; font-size: 1.25rem; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'" title="X"><i class="fa fa-twitter"></i></a>
+            <a href="#" style="color: #ffffff; font-size: 1.25rem; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+            <a href="#" style="color: #ffffff; font-size: 1.25rem; transition: color 0.3s;" onmouseover="this.style.color='#f5a425'" onmouseout="this.style.color='#ffffff'" title="Facebook"><i class="fa fa-facebook"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-12 text-center">
+          <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">
+            <i class="fa fa-copyright"></i> Copyright 2026 Wama Training Institute | Design: <a href="https://kipkerich.github.io/mysite/" target="_blank" style="color: #94a3b8; text-decoration: none;">Pixel Architect</a>
+          </p>
         </div>
       </div>
     </div>
@@ -79,12 +126,12 @@
   <script src="{% static 'js/video.js' %}"></script>
   <script src="{% static 'js/slick-slider.js' %}"></script>
   <script src="{% static 'js/custom.js' %}"></script>
-  <script>
-    $('.menu-link').click(function(e) {
-        e.preventDefault();
-        $('#menu').toggleClass('active');
-    });
-  </script>
   {% block extra_js %}{% endblock %}
+
+  <!-- Floating WhatsApp Hover Button -->
+  <a href="https://wa.me/254792082773" target="_blank" class="whatsapp-float" style="position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: #ffffff; padding: 12px 20px; border-radius: 50px; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.25); z-index: 9999; transition: all 0.3s ease; gap: 8px;" onmouseover="this.style.backgroundColor='#20ba5a'; this.style.transform='translateY(-3px)';" onmouseout="this.style.backgroundColor='#25D366'; this.style.transform='translateY(0)';" title="Chat with us on WhatsApp">
+    <i class="fa fa-whatsapp" style="font-size: 1.4rem;"></i>
+    <span>chat with us</span>
+  </a>
 </body>
 </html>
