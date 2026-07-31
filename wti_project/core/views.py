@@ -1,12 +1,10 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse, HttpResponseBadRequest
-from .models import Blog, FAQ, Course, ApplicationField, ApplicationSubmission
+from django.shortcuts import render
+from .models import Blog, FAQ
 
 def home_view(request):
-    blogs = Blog.objects.all()[:3]
+    blogs = Blog.objects.all()[:3]  # original static page had exactly 3 blogs on the home page
     faqs = FAQ.objects.all()
-    courses = Course.objects.all()
-    return render(request, 'core/index.html', {'blogs': blogs, 'faqs': faqs, 'courses': courses})
+    return render(request, 'core/index.html', {'blogs': blogs, 'faqs': faqs})
 
 def about_view(request):
     return render(request, 'core/about.html')
