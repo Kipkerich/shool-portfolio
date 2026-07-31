@@ -1,53 +1,42 @@
 Watching for file changes with StatReloader
-[31/Jul/2026 10:55:54] "GET /admin/login/ HTTP/1.1" 200 4067
-[31/Jul/2026 10:55:54] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
-[31/Jul/2026 10:55:54] "GET /static/admin/css/login.css HTTP/1.1" 200 951
-[31/Jul/2026 10:55:54] "GET /static/admin/css/base.css HTTP/1.1" 200 23100
-[31/Jul/2026 10:55:54] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
-[31/Jul/2026 10:55:54] "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
-[31/Jul/2026 10:55:54] "GET /static/admin/css/responsive.css HTTP/1.1" 200 16273
-[31/Jul/2026 10:55:54] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
-[31/Jul/2026 10:55:57] "POST /admin/login/ HTTP/1.1" 302 0
-[31/Jul/2026 10:55:57] "GET /admin/ HTTP/1.1" 200 9520
-[31/Jul/2026 10:55:57] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
-[31/Jul/2026 10:55:57] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
-[31/Jul/2026 10:55:57] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
-[31/Jul/2026 10:55:59] "GET /admin/core/course/add/ HTTP/1.1" 200 19158
-[31/Jul/2026 10:55:59] "GET /static/admin/css/forms.css HTTP/1.1" 200 8831
-[31/Jul/2026 10:55:59] "GET /static/admin/js/core.js HTTP/1.1" 200 6208
-[31/Jul/2026 10:55:59] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
-[31/Jul/2026 10:55:59] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
-[31/Jul/2026 10:55:59] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
-[31/Jul/2026 10:55:59] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
-[31/Jul/2026 10:55:59] "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
-[31/Jul/2026 10:55:59] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
-[31/Jul/2026 10:55:59] "GET /static/admin/js/actions.js HTTP/1.1" 200 8077
-[31/Jul/2026 10:55:59] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
-[31/Jul/2026 10:55:59] "GET /static/admin/css/widgets.css HTTP/1.1" 200 11811
-[31/Jul/2026 10:55:59] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
-[31/Jul/2026 10:55:59] "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
-[31/Jul/2026 10:56:01] "POST /admin/core/course/add/ HTTP/1.1" 302 0
-[31/Jul/2026 10:56:01] "GET /admin/core/course/ HTTP/1.1" 200 13687
-[31/Jul/2026 10:56:01] "GET /static/admin/css/changelists.css HTTP/1.1" 200 7498
-[31/Jul/2026 10:56:01] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
-[31/Jul/2026 10:56:01] "GET /static/admin/img/search.svg HTTP/1.1" 200 607
-[31/Jul/2026 10:56:01] "GET /static/admin/js/filters.js HTTP/1.1" 200 978
-[31/Jul/2026 10:56:01] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
-[31/Jul/2026 10:56:01] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
-[31/Jul/2026 10:56:03] "GET /admin/core/faq/add/ HTTP/1.1" 200 12266
-[31/Jul/2026 10:56:03] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
-[31/Jul/2026 10:56:05] "POST /admin/core/faq/add/ HTTP/1.1" 302 0
-[31/Jul/2026 10:56:05] "GET /admin/core/faq/ HTTP/1.1" 200 14522
-[31/Jul/2026 10:56:05] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
-[31/Jul/2026 10:56:05] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
-[31/Jul/2026 10:56:07] "GET /admin/core/blog/add/ HTTP/1.1" 200 15157
-[31/Jul/2026 10:56:07] "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19698
-[31/Jul/2026 10:56:07] "GET /static/admin/js/calendar.js HTTP/1.1" 200 9159
-[31/Jul/2026 10:56:07] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
-[31/Jul/2026 10:56:07] "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1112
-[31/Jul/2026 10:56:09] "POST /admin/core/blog/add/ HTTP/1.1" 302 0
-[31/Jul/2026 10:56:09] "GET /admin/core/blog/ HTTP/1.1" 200 16710
-[31/Jul/2026 10:56:09] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
-[31/Jul/2026 10:56:09] "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
-[31/Jul/2026 10:56:11] "GET /admin/core/course/ HTTP/1.1" 200 13470
-[31/Jul/2026 10:56:11] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[31/Jul/2026 09:40:55] "GET /courses/ HTTP/1.1" 200 15640
+[31/Jul/2026 09:40:55] "GET /static/css/custom-enhancements.css HTTP/1.1" 200 5927
+[31/Jul/2026 09:40:55] "GET /static/css/lightbox.css HTTP/1.1" 200 3954
+[31/Jul/2026 09:40:55] "GET /static/css/fontawesome.css HTTP/1.1" 200 23739
+[31/Jul/2026 09:40:55] "GET /static/css/owl.css HTTP/1.1" 200 5637
+[31/Jul/2026 09:40:55] "GET /static/css/templatemo-grad-school.css HTTP/1.1" 200 23575
+[31/Jul/2026 09:40:55] "GET /static/css/bootstrap.min.css HTTP/1.1" 200 160302
+[31/Jul/2026 09:40:55] "GET /static/images/wti-logo.png HTTP/1.1" 200 90790
+[31/Jul/2026 09:40:55] "GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 60046
+[31/Jul/2026 09:40:55] "GET /static/js/jquery.min.js HTTP/1.1" 200 86926
+[31/Jul/2026 09:40:55] "GET /static/images/phlebotomy-img.jpg HTTP/1.1" 200 357086
+[31/Jul/2026 09:40:55] "GET /static/images/perioperative-img.jpg HTTP/1.1" 200 436912
+[31/Jul/2026 09:40:55] "GET /static/images/course.jpg HTTP/1.1" 200 369167
+[31/Jul/2026 09:40:55] "GET /static/js/isotope.min.js HTTP/1.1" 200 119983
+[31/Jul/2026 09:40:55] "GET /static/js/owl-carousel.js HTTP/1.1" 200 89991
+[31/Jul/2026 09:40:55] "GET /static/images/courses-bg.jpg HTTP/1.1" 200 32225
+[31/Jul/2026 09:40:55] "GET /static/js/lightbox.js HTTP/1.1" 200 18410
+[31/Jul/2026 09:40:55] "GET /static/js/tabs.js HTTP/1.1" 200 469356
+[31/Jul/2026 09:40:55] "GET /static/js/video.js HTTP/1.1" 200 20810
+[31/Jul/2026 09:40:55] "GET /static/js/slick-slider.js HTTP/1.1" 200 84264
+[31/Jul/2026 09:40:55] "GET /static/js/custom.js HTTP/1.1" 200 2359
+[31/Jul/2026 09:40:55] "GET /static/fonts/fontawesome-webfont.woff2?v=4.3.0 HTTP/1.1" 200 56780
+[31/Jul/2026 09:40:56] "GET /static/images/prev.png HTTP/1.1" 200 1360
+[31/Jul/2026 09:40:56] "GET /static/images/close.png HTTP/1.1" 200 280
+[31/Jul/2026 09:40:56] "GET /static/images/next.png HTTP/1.1" 200 1350
+[31/Jul/2026 09:40:56] "GET /static/images/loading.gif HTTP/1.1" 200 8476
+[31/Jul/2026 09:40:57] "GET /courses/1/ HTTP/1.1" 200 13815
+[31/Jul/2026 09:40:58] "GET /courses/1/apply/ HTTP/1.1" 200 14682
+[31/Jul/2026 09:41:03] "POST /courses/1/apply/ HTTP/1.1" 200 13026
+/app/wti_project/core/admin.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 31, 2026 - 09:38:52
+Django version 6.0.7, using settings 'wti_project.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
