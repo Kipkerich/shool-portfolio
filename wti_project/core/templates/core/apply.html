@@ -1,0 +1,70 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Apply for {{ course.title }} | Wama Training Institute{% endblock %}
+
+{% block content %}
+  <!-- Page Header -->
+  <section class="page-heading" style="background-image: url({% static 'images/courses-bg.jpg' %}); padding: 120px 0 80px; background-position: center; background-size: cover; position: relative;">
+      <div class="video-overlay" style="background-color: rgba(7, 36, 75, 0.85); position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+          <div class="row">
+              <div class="col-md-12 text-center text-white">
+                  <span class="text-uppercase" style="letter-spacing: 2px; color: #f5a425; font-weight: 700; font-size: 0.9rem;">Application Form</span>
+                  <h1 style="font-weight: 800; font-size: 2.8rem; margin-top: 10px; margin-bottom: 15px;">Enrollment Application</h1>
+                  <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; opacity: 0.9;">{{ course.title }}</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Application Form Content -->
+  <section class="section apply-form" style="padding: 80px 0; background-color: #f8fafc;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="card border-0 shadow-sm p-4 p-md-5" style="border-radius: 12px; background-color: #ffffff;">
+            <div class="form-header text-center mb-5">
+              <h2 style="color: #07244b; font-weight: 700; font-size: 1.8rem; margin-bottom: 10px;">Please Fill Out Your Information</h2>
+              <p class="text-muted" style="font-size: 0.95rem;">All fields marked with (*) are required. Submitting this form initiates the secure application processing.</p>
+              <div class="header-line" style="width: 50px; height: 3px; background-color: #f5a425; margin: 15px auto 0;"></div>
+            </div>
+
+            <form method="POST">
+              {% csrf_token %}
+
+              {% for field in fields %}
+              <div class="form-group mb-4">
+                <label for="field_{{ field.id }}" style="color: #07244b; font-weight: 600; margin-bottom: 8px; display: block; font-size: 0.95rem;">
+                  {{ field.label }} {% if field.required %}<span class="text-danger">*</span>{% endif %}
+                </label>
+
+                {% if field.field_type == 'text' %}
+                <input type="text" name="field_{{ field.id }}" id="field_{{ field.id }}" class="form-control" style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; font-size: 0.95rem; width: 100%; transition: border-color 0.3s;" {% if field.required %}required{% endif %} placeholder="Enter your response">
+
+                {% elif field.field_type == 'email' %}
+                <input type="email" name="field_{{ field.id }}" id="field_{{ field.id }}" class="form-control" style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; font-size: 0.95rem; width: 100%; transition: border-color 0.3s;" {% if field.required %}required{% endif %} placeholder="Enter your email address">
+
+                {% elif field.field_type == 'number' %}
+                <input type="number" name="field_{{ field.id }}" id="field_{{ field.id }}" class="form-control" style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; font-size: 0.95rem; width: 100%; transition: border-color 0.3s;" {% if field.required %}required{% endif %} placeholder="Enter numeric value">
+
+                {% elif field.field_type == 'textarea' %}
+                <textarea name="field_{{ field.id }}" id="field_{{ field.id }}" rows="4" class="form-control" style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; font-size: 0.95rem; width: 100%; transition: border-color 0.3s;" {% if field.required %}required{% endif %} placeholder="Write your response here..."></textarea>
+                {% endif %}
+              </div>
+              {% empty %}
+              <p class="text-center text-muted">No dynamic form fields are specified by the administrator yet.</p>
+              {% endfor %}
+
+              <div class="form-action mt-5">
+                <button type="submit" class="btn btn-block text-white font-weight-bold py-3" style="background-color: #956c34; border-radius: 30px; font-size: 1.1rem; width: 100%; transition: background-color 0.3s; box-shadow: 0 4px 15px rgba(149, 108, 52, 0.3);" onmouseover="this.style.backgroundColor='#07244b';" onmouseout="this.style.backgroundColor='#956c34';">
+                  Proceed to Next Step <i class="fa fa-chevron-right ml-1"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
