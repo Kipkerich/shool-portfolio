@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from .models import Blog, FAQ
+from .models import Blog, FAQ, Course, ApplicationField, ApplicationSubmission
 import datetime
 
 class WTIPagesTestCase(TestCase):
@@ -23,6 +23,28 @@ class WTIPagesTestCase(TestCase):
         FAQ.objects.create(
             question="Where is Wama Training Institute located?",
             answer="We are conveniently located in Ongata Rongai...",
+            order=2
+        )
+
+        # Create mock Course and Fields
+        from .models import Course, ApplicationField
+        self.course = Course.objects.create(
+            title="Perioperative Theatre Technology",
+            description="Tuition is KES 45,000",
+            level="Diploma",
+            application_fee=1000.00,
+            paystack_public_key="pk_test_123"
+        )
+        self.field_name = ApplicationField.objects.create(
+            label="Full Name",
+            field_type="text",
+            required=True,
+            order=1
+        )
+        self.field_email = ApplicationField.objects.create(
+            label="Email Address",
+            field_type="email",
+            required=True,
             order=2
         )
 

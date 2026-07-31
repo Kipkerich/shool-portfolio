@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from .models import Blog, FAQ
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseBadRequest
+from .models import Blog, FAQ, Course, ApplicationField, ApplicationSubmission
 
 def home_view(request):
     blogs = Blog.objects.all()[:3]  # original static page had exactly 3 blogs on the home page
