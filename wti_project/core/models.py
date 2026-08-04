@@ -69,6 +69,11 @@ class Course(models.Model):
         null=True,
         help_text="Manually write/update the school fees information",
     )
+    is_open = models.BooleanField(
+        default=True,
+        verbose_name="Application Status (Open/Closed)",
+        help_text="Toggle whether applications are currently open or closed for this course.",
+    )
 
     def __str__(self):
         return self.title

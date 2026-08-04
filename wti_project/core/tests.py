@@ -160,3 +160,39 @@ class WTIPagesTestCase(TestCase):
         response = self.client.post(reverse('contact'), data=form_data)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "All fields are required.")
+
+    def test_homepage_contains_available_courses(self):
+        """Test that the homepage context and template renders the available courses."""
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('courses', response.context)
+        self.assertEqual(len(response.context['courses']), 1)
+        self.assertContains(response, self.course.title)
+
+    def test_course_detail_and_apply_for_closed_course(self):
+        """Test that closed course displays closed status and prevents applications."""
+        # Toggle course to closed
+        self.course.is_open = False
+        self.course.save()
+
+        # Check detail page
+        response_detail = self.client.get(reverse('course_detail', kwargs={'course_id': self.course.id}))
+        self.assertEqual(response_detail.status_code, 200)
+        self.assertContains(response_detail, "CLOSED")
+
+        # Check apply page GET
+        response_apply_get = self.client.get(reverse('apply', kwargs={'course_id': self.course.id}))
+        self.assertEqual(response_apply_get.status_code, 200)
+        self.assertContains(response_apply_get, "Applications are Closed")
+
+        # Check apply page POST (should not save submission)
+        form_data = {
+            f'field_{self.field_name.id}': 'John Doe',
+            f'field_{self.field_email.id}': 'john@example.com'
+        }
+        response_apply_post = self.client.post(reverse('apply', kwargs={'course_id': self.course.id}), data=form_data)
+        self.assertEqual(response_apply_post.status_code, 200)
+        self.assertContains(response_apply_post, "Applications are Closed")
+
+        # Verify no submissions were created (the count should be 0)
+        self.assertEqual(ApplicationSubmission.objects.filter(course=self.course).count(), 0)
