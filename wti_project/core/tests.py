@@ -126,7 +126,7 @@ class WTIPagesTestCase(TestCase):
         """Test that the contact page displays the required heading."""
         response = self.client.get(reverse('contact'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "get in touch through the email: info@wamatraininginstitute.ac.ke or wamatraininginstitute@gamil.com , Phone Number : 0792082773 and Location: Ongata Rongai ,Tyme Suite, 5th Floor.")
+        self.assertContains(response, "get in touch through the email: info@wamatraininginstitute.ac.ke or wamatraininginstitute@gmail.com , Phone Number : 0792082773 and Location: Ongata Rongai ,Tyme Suite, 5th Floor.")
 
     def test_contact_form_submission_success(self):
         """Test that submitting the contact form sends an email and displays success."""
