@@ -121,3 +121,42 @@ class WTIPagesTestCase(TestCase):
         self.assertEqual(submission.data["Full Name"], "John Doe")
         self.assertEqual(submission.data["Email Address"], "john@example.com")
         self.assertFalse(submission.paid)
+
+    def test_contact_page_heading(self):
+        """Test that the contact page displays the required heading."""
+        response = self.client.get(reverse('contact'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "get in touch through the email: info@wamatraininginstitute.ac.ke or wamatraininginstitute@gmail.com , Phone Number : 0792082773 and Location: Ongata Rongai ,Tyme Suite, 5th Floor.")
+
+    def test_contact_form_submission_success(self):
+        """Test that submitting the contact form sends an email and displays success."""
+        from django.core import mail
+        form_data = {
+            'name': 'Jane Doe',
+            'phone_number': '0792082773',
+            'subject': 'Inquiry about level 5 courses',
+            'message': 'Hello, I would like to get more information.'
+        }
+        response = self.client.post(reverse('contact'), data=form_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'core/contact.html')
+        self.assertContains(response, "Your message has been sent successfully.")
+
+        # Check that email was sent to console / test outbox
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, "Contact Form Submission: Inquiry about level 5 courses")
+        self.assertIn("Jane Doe", mail.outbox[0].body)
+        self.assertIn("0792082773", mail.outbox[0].body)
+        self.assertEqual(mail.outbox[0].to, ["wamatraininginstitute@gmail.com"])
+
+    def test_contact_form_submission_missing_fields(self):
+        """Test that submitting the contact form with missing fields returns an error."""
+        form_data = {
+            'name': '',
+            'phone_number': '0792082773',
+            'subject': '',
+            'message': 'Hello'
+        }
+        response = self.client.post(reverse('contact'), data=form_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "All fields are required.")

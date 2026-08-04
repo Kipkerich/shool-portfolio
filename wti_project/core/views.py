@@ -78,5 +78,37 @@ def blog_view(request):
     blogs = Blog.objects.all()
     return render(request, 'core/blog.html', {'blogs': blogs})
 
+from django.core.mail import send_mail
+
 def contact_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+        phone_number = request.POST.get('phone_number', '').strip()
+        subject_input = request.POST.get('subject', '').strip()
+        message_input = request.POST.get('message', '').strip()
+
+        if not name or not phone_number or not subject_input or not message_input:
+            return render(request, 'core/contact.html', {
+                'error': 'All fields are required.'
+            })
+
+        # Build email content
+        subject = f"Contact Form Submission: {subject_input}"
+        body = f"Name: {name}\nPhone Number: {phone_number}\n\nMessage:\n{message_input}"
+        recipient_list = ['wamatraininginstitute@gmail.com']
+
+        try:
+            send_mail(
+                subject=subject,
+                message=body,
+                from_email='noreply@wamatraininginstitute.ac.ke',
+                recipient_list=recipient_list,
+                fail_silently=False,
+            )
+            return render(request, 'core/contact.html', {'success': True})
+        except Exception as e:
+            return render(request, 'core/contact.html', {
+                'error': f"An error occurred while sending your message: {str(e)}"
+            })
+
     return render(request, 'core/contact.html')

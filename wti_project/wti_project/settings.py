@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-w@p5yq!qf)!z+l8%fn+j#v(egq9om$b42!sjy(kqr%69ntr^@-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -121,3 +121,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Email Configuration for Contact Form
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
