@@ -10,27 +10,103 @@
       <div class="container" style="position: relative; z-index: 2;">
           <div class="row">
               <div class="col-md-12 text-center text-white">
-                  <span class="text-uppercase" style="letter-spacing: 2px; color: #f5a425; font-weight: 700; font-size: 0.9rem;">Get In Touch</span>
-                  <h1 style="font-weight: 800; font-size: 3rem; margin-top: 10px; margin-bottom: 15px;">Contact Admissions</h1>
-                  <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; opacity: 0.9;">Reach out to our counseling desk in Ongata Rongai to start your registration path.</p>
+                  <span class="text-uppercase" style="letter-spacing: 2px; color: #f5a425; font-weight: 700; font-size: 0.9rem;">Contact</span>
+                  <h1 style="font-weight: 800; font-size: 3rem; margin-top: 10px; margin-bottom: 15px;">Get In Touch</h1>
+                  <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; opacity: 0.9;">Reach out to our campus for inquiries, details, and admissions support.</p>
               </div>
           </div>
       </div>
   </section>
 
-  <section class="section contact-details" style="padding: 80px 0; background-color: #ffffff;">
+  <section class="section contact-section" style="padding: 60px 0; background-color: #f8fafc;">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <h2 style="color: #07244b; font-weight: 700;">Inquire Today</h2>
-          <p class="mt-4" style="color: #64748b; font-size: 1.1rem; line-height: 1.8;">Our campus is open Monday to Saturday. Drop an email, phone us, or visit our administration block to collect brochures and details.</p>
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center mb-5">
+          <!-- Required Heading on top of the form -->
+          <div class="p-4 rounded shadow-sm" style="background-color: #07244b; color: #ffffff; border-left: 5px solid #f5a425;">
+            <h4 style="font-weight: 700; line-height: 1.6; margin: 0; font-size: 1.25rem;">
+              get in touch through the email: info@wamatraininginstitute.ac.ke or wamatraininginstitute@gamil.com , Phone Number : 0792082773 and Location: Ongata Rongai ,Tyme Suite, 5th Floor.
+            </h4>
+          </div>
         </div>
-        <div class="col-lg-6">
-          <!-- Placeholder contact details -->
-          <div class="p-4 bg-light rounded shadow-sm">
-            <h5 class="font-weight-bold" style="color: #07244b;">Wama Training Institute</h5>
-            <p class="mt-3"><i class="fa fa-map-marker mr-2" style="color: #f5a425;"></i> Ongata Rongai, Kenya</p>
-            <p><i class="fa fa-envelope mr-2" style="color: #f5a425;"></i> admissions@wamahospital.org</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="p-5 bg-white rounded shadow" style="border-top: 4px solid #f5a425;">
+            <h3 class="mb-4 text-center" style="color: #07244b; font-weight: 700;">Send Us a Message</h3>
+
+            {% if success %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Thank you!</strong> Your message has been sent successfully. We will get back to you shortly.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endif %}
+
+            {% if error %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> {{ error }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endif %}
+
+            <form action="{% url 'contact' %}" method="POST" class="contact-form">
+              {% csrf_token %}
+              <div class="form-group mb-3">
+                <label for="name" style="font-weight: 600; color: #07244b;">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your Full Name" required style="border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px;">
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="phone_number" style="font-weight: 600; color: #07244b;">Phone Number</label>
+                <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="e.g. 0792082773" required style="border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px;">
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="subject" style="font-weight: 600; color: #07244b;">Subject</label>
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject of your message" required style="border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px;">
+              </div>
+
+              <div class="form-group mb-4">
+                <label for="message" style="font-weight: 600; color: #07244b;">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message here..." required style="border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; resize: vertical;"></textarea>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn text-white font-weight-bold px-5 py-3" style="background-color: #07244b; border-radius: 30px; font-size: 1.1rem; transition: background-color 0.3s, transform 0.2s; border: none;" onmouseover="this.style.backgroundColor='#f5a425'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#07244b'; this.style.transform='scale(1)';">
+                  Submit Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Map Section Below the Form -->
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-10">
+          <div class="p-3 bg-white rounded shadow-sm mb-3 text-center">
+            <span class="text-muted"><i class="fa fa-map-marker" style="color: #f5a425;"></i> Find us in Ongata Rongai, Tyme Suite, 5th Floor</span>
+          </div>
+          <div class="rounded overflow-hidden shadow" style="border: 3px solid #07244b;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6288828956976!2d36.7571126!3d-1.3971848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f05cf50f94e8d%3A0xac860d5d4a5dc0bd!2sJQ35%2B4V%2C%20Ongata%20Rongai!5e0!3m2!1sen!2ske!4v1722758400000!5m2!1sen!2ske"
+              width="100%"
+              height="450"
+              style="border:0; display: block;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <div class="text-center mt-3">
+            <a href="https://maps.app.goo.gl/zwcVsZKmhsyNKsP78" target="_blank" class="btn text-white px-4 py-2 font-weight-bold" style="background-color: #f5a425; border-radius: 30px; text-decoration: none; font-size: 0.95rem; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#07244b';" onmouseout="this.style.backgroundColor='#f5a425';">
+              <i class="fa fa-external-link"></i> View on Google Maps
+            </a>
           </div>
         </div>
       </div>
