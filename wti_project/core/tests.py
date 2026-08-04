@@ -121,3 +121,78 @@ class WTIPagesTestCase(TestCase):
         self.assertEqual(submission.data["Full Name"], "John Doe")
         self.assertEqual(submission.data["Email Address"], "john@example.com")
         self.assertFalse(submission.paid)
+
+    def test_contact_page_heading(self):
+        """Test that the contact page displays the required heading."""
+        response = self.client.get(reverse('contact'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "get in touch through the email: info@wamatraininginstitute.ac.ke or wamatraininginstitute@gmail.com , Phone Number : 0792082773 and Location: Ongata Rongai ,Tyme Suite, 5th Floor.")
+
+    def test_contact_form_submission_success(self):
+        """Test that submitting the contact form sends an email and displays success."""
+        from django.core import mail
+        form_data = {
+            'name': 'Jane Doe',
+            'phone_number': '0792082773',
+            'subject': 'Inquiry about level 5 courses',
+            'message': 'Hello, I would like to get more information.'
+        }
+        response = self.client.post(reverse('contact'), data=form_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'core/contact.html')
+        self.assertContains(response, "Your message has been sent successfully.")
+
+        # Check that email was sent to console / test outbox
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, "Contact Form Submission: Inquiry about level 5 courses")
+        self.assertIn("Jane Doe", mail.outbox[0].body)
+        self.assertIn("0792082773", mail.outbox[0].body)
+        self.assertEqual(mail.outbox[0].to, ["wamatraininginstitute@gmail.com"])
+
+    def test_contact_form_submission_missing_fields(self):
+        """Test that submitting the contact form with missing fields returns an error."""
+        form_data = {
+            'name': '',
+            'phone_number': '0792082773',
+            'subject': '',
+            'message': 'Hello'
+        }
+        response = self.client.post(reverse('contact'), data=form_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "All fields are required.")
+
+    def test_homepage_contains_available_courses(self):
+        """Test that the homepage context and template renders the available courses."""
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('courses', response.context)
+        self.assertEqual(len(response.context['courses']), 1)
+        self.assertContains(response, self.course.title)
+
+    def test_course_detail_and_apply_for_closed_course(self):
+        """Test that closed course displays closed status and prevents applications."""
+        # Toggle course to closed
+        self.course.is_open = False
+        self.course.save()
+
+        # Check detail page
+        response_detail = self.client.get(reverse('course_detail', kwargs={'course_id': self.course.id}))
+        self.assertEqual(response_detail.status_code, 200)
+        self.assertContains(response_detail, "CLOSED")
+
+        # Check apply page GET
+        response_apply_get = self.client.get(reverse('apply', kwargs={'course_id': self.course.id}))
+        self.assertEqual(response_apply_get.status_code, 200)
+        self.assertContains(response_apply_get, "Applications are Closed")
+
+        # Check apply page POST (should not save submission)
+        form_data = {
+            f'field_{self.field_name.id}': 'John Doe',
+            f'field_{self.field_email.id}': 'john@example.com'
+        }
+        response_apply_post = self.client.post(reverse('apply', kwargs={'course_id': self.course.id}), data=form_data)
+        self.assertEqual(response_apply_post.status_code, 200)
+        self.assertContains(response_apply_post, "Applications are Closed")
+
+        # Verify no submissions were created (the count should be 0)
+        self.assertEqual(ApplicationSubmission.objects.filter(course=self.course).count(), 0)

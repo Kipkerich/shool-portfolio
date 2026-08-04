@@ -34,9 +34,15 @@
 
             <!-- Apply Now Button Directly After Description -->
             <div class="apply-after-description-action mb-5">
+              {% if course.is_open %}
               <a href="{% url 'apply' course_id=course.id %}" class="btn text-white font-weight-bold" style="background-color: #f5a425; border-radius: 30px; padding: 12px 35px; font-size: 1.1rem; transition: background-color 0.3s; box-shadow: 0 4px 15px rgba(245, 164, 37, 0.3); display: inline-block;" onmouseover="this.style.backgroundColor='#07244b';" onmouseout="this.style.backgroundColor='#f5a425';">
                 Apply Now <i class="fa fa-arrow-right ml-2"></i>
               </a>
+              {% else %}
+              <button class="btn font-weight-bold text-white px-5 py-3" disabled style="background-color: #94a3b8; border-radius: 30px; font-size: 1.1rem; cursor: not-allowed; border: none; display: inline-block;">
+                Applications Closed
+              </button>
+              {% endif %}
             </div>
 
             <!-- School Fees Structure Section -->
@@ -78,14 +84,24 @@
               </li>
               <li class="d-flex justify-content-between py-3" style="border-bottom: 1px solid #e2e8f0;">
                 <span class="text-muted"><i class="fa fa-calendar"></i> Intake status:</span>
+                {% if course.is_open %}
                 <span class="badge badge-success font-weight-bold px-3 py-1" style="background-color: #22c55e; color: #ffffff; border-radius: 10px;">OPEN</span>
+                {% else %}
+                <span class="badge badge-danger font-weight-bold px-3 py-1" style="background-color: #ef4444; color: #ffffff; border-radius: 10px;">CLOSED</span>
+                {% endif %}
               </li>
             </ul>
 
             <!-- Apply Now Button -->
+            {% if course.is_open %}
             <a href="{% url 'apply' course_id=course.id %}" class="btn btn-block text-white font-weight-bold py-3" style="background-color: #956c34; border-radius: 30px; font-size: 1.1rem; transition: background-color 0.3s; box-shadow: 0 4px 15px rgba(149, 108, 52, 0.3);" onmouseover="this.style.backgroundColor='#07244b';" onmouseout="this.style.backgroundColor='#956c34';">
               Apply Now <i class="fa fa-arrow-right ml-1"></i>
             </a>
+            {% else %}
+            <button class="btn btn-block font-weight-bold text-white py-3" disabled style="background-color: #94a3b8; border-radius: 30px; font-size: 1.1rem; cursor: not-allowed; border: none; width: 100%;">
+              Applications Closed
+            </button>
+            {% endif %}
           </div>
         </div>
       </div>

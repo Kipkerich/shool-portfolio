@@ -34,8 +34,7 @@
                 <h5 style="color: #07244b; font-weight: 700; margin-bottom: 15px;">{{ course.title }}</h5>
                 <p class="text-muted small" style="line-height: 1.6;">{{ course.description|truncatechars:120 }}</p>
               </div>
-              <div class="mt-4 pt-3 border-top d-flex align-items-center justify-content-between">
-                <span class="font-weight-bold text-muted" style="font-size: 0.9rem;">Fee: KES {{ course.application_fee|floatformat:2 }}</span>
+              <div class="mt-4 pt-3 border-top d-flex justify-content-center">
                 <a href="{% url 'course_detail' course_id=course.id %}" class="btn text-white font-weight-bold" style="background-color: #956c34; border-radius: 30px; font-size: 0.85rem; padding: 6px 18px; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#07244b';" onmouseout="this.style.backgroundColor='#956c34';">Read More</a>
               </div>
             </div>

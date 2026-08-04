@@ -5,7 +5,12 @@ from .models import Blog, FAQ, Course, ApplicationField, ApplicationSubmission
 def home_view(request):
     blogs = Blog.objects.all()[:3]  # original static page had exactly 3 blogs on the home page
     faqs = FAQ.objects.all()
-    return render(request, 'core/index.html', {'blogs': blogs, 'faqs': faqs})
+    courses = Course.objects.all()
+    return render(request, 'core/index.html', {
+        'blogs': blogs,
+        'faqs': faqs,
+        'courses': courses,
+    })
 
 def about_view(request):
     return render(request, 'core/about.html')
@@ -21,6 +26,13 @@ def course_detail_view(request, course_id):
 def apply_view(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     fields = ApplicationField.objects.all()
+
+    if not course.is_open:
+        return render(request, 'core/apply.html', {
+            'course': course,
+            'fields': fields,
+            'error': "Applications for this course are currently closed."
+        })
 
     if request.method == 'POST':
         # Gather all dynamic form field submissions
@@ -78,5 +90,37 @@ def blog_view(request):
     blogs = Blog.objects.all()
     return render(request, 'core/blog.html', {'blogs': blogs})
 
+from django.core.mail import send_mail
+
 def contact_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+        phone_number = request.POST.get('phone_number', '').strip()
+        subject_input = request.POST.get('subject', '').strip()
+        message_input = request.POST.get('message', '').strip()
+
+        if not name or not phone_number or not subject_input or not message_input:
+            return render(request, 'core/contact.html', {
+                'error': 'All fields are required.'
+            })
+
+        # Build email content
+        subject = f"Contact Form Submission: {subject_input}"
+        body = f"Name: {name}\nPhone Number: {phone_number}\n\nMessage:\n{message_input}"
+        recipient_list = ['wamatraininginstitute@gmail.com']
+
+        try:
+            send_mail(
+                subject=subject,
+                message=body,
+                from_email='noreply@wamatraininginstitute.ac.ke',
+                recipient_list=recipient_list,
+                fail_silently=False,
+            )
+            return render(request, 'core/contact.html', {'success': True})
+        except Exception as e:
+            return render(request, 'core/contact.html', {
+                'error': f"An error occurred while sending your message: {str(e)}"
+            })
+
     return render(request, 'core/contact.html')

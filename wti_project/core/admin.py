@@ -1,5 +1,26 @@
 from django.contrib import admin
-from .models import Blog, FAQ
+from .models import Blog, FAQ, Course, ApplicationField, ApplicationSubmission
+
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ('title', 'level', 'application_fee', 'is_open')
+    search_fields = ('title', 'description')
+    list_filter = ('level', 'is_open')
+    list_editable = ('is_open',)
+
+@admin.register(ApplicationField)
+class ApplicationFieldAdmin(admin.ModelAdmin):
+    list_display = ('label', 'field_type', 'required', 'order')
+    search_fields = ('label',)
+    list_filter = ('field_type', 'required')
+    ordering = ('order', 'id')
+
+@admin.register(ApplicationSubmission)
+class ApplicationSubmissionAdmin(admin.ModelAdmin):
+    list_display = ('course', 'submitted_at', 'paid', 'payment_reference', 'amount_paid')
+    list_filter = ('paid', 'submitted_at', 'course')
+    search_fields = ('payment_reference', 'data')
+    readonly_fields = ('submitted_at',)
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
