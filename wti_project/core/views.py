@@ -5,7 +5,12 @@ from .models import Blog, FAQ, Course, ApplicationField, ApplicationSubmission
 def home_view(request):
     blogs = Blog.objects.all()[:3]  # original static page had exactly 3 blogs on the home page
     faqs = FAQ.objects.all()
-    return render(request, 'core/index.html', {'blogs': blogs, 'faqs': faqs})
+    courses = Course.objects.all()
+    return render(request, 'core/index.html', {
+        'blogs': blogs,
+        'faqs': faqs,
+        'courses': courses,
+    })
 
 def about_view(request):
     return render(request, 'core/about.html')
@@ -21,6 +26,13 @@ def course_detail_view(request, course_id):
 def apply_view(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     fields = ApplicationField.objects.all()
+
+    if not course.is_open:
+        return render(request, 'core/apply.html', {
+            'course': course,
+            'fields': fields,
+            'error': "Applications for this course are currently closed."
+        })
 
     if request.method == 'POST':
         # Gather all dynamic form field submissions
