@@ -3,9 +3,10 @@ from .models import Blog, FAQ, Course, ApplicationField, ApplicationSubmission
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'level', 'application_fee')
+    list_display = ('title', 'level', 'application_fee', 'is_open')
     search_fields = ('title', 'description')
-    list_filter = ('level',)
+    list_filter = ('level', 'is_open')
+    list_editable = ('is_open',)
 
 @admin.register(ApplicationField)
 class ApplicationFieldAdmin(admin.ModelAdmin):
